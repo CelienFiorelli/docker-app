@@ -3,14 +3,18 @@
         <div class="flex justify-center">
             <div class="w-1/3">
                 <div>
-                    Connexion
-                    <div class="flex flex-col items-center" @keypress.enter="login">
-                        <input v-model="email" label="Email :" type="email" />
+                    <div class="text-3xl mb-4">
+                        Connexion
+                    </div>
+                    <div class="flex flex-col" @keypress.enter="login">
+                        Email :
+                        <input class="bg-zinc-100 border border-black rounded-md w-full my-2" v-model="email" type="email" />
                         {{ errors.email }}
-                        <input v-model="password" label="Mot de passe :" type="password" />
+                        Mot de passe :
+                        <input class="bg-zinc-100 border border-black rounded-md w-full my-2" v-model="password" type="password" />
                         {{ errors.password }}
-                        <div class="mb-2 mt-4">
-                            <button @click="login">Se connecter</button>
+                        <div class="mb-2 mt-4 flex justify-center">
+                            <button class="bg-zinc-100 border border-zinc-200 rounded-md px-2" @click="login">Se connecter</button>
                         </div>
                     </div>
                 </div>

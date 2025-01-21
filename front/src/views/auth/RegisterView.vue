@@ -3,18 +3,24 @@
         <div class="flex justify-center">
             <div class="w-1/3">
                 <div>
-                    Inscription
-                    <div class="flex flex-col items-center" @keypress.enter="login">
-                        <input label="Nom d'utilisateur :" v-model="username" />
+                    <div class="text-3xl mb-4">
+                        Inscription
+                    </div>
+                    <div class="flex flex-col" @keypress.enter="login">
+                        Nom d'utilisateur :
+                        <input class="bg-zinc-100 border border-black rounded-md w-full my-2" v-model="username" />
                         {{ errors.username }}
-                        <input label="Email :" type="email" v-model="email" />
+                        Email :
+                        <input class="bg-zinc-100 border border-black rounded-md w-full my-2" type="email" v-model="email" />
                         {{ errors.email }}
-                        <input label="Mot de passe :" type="password" v-model="password" />
+                        Mot de passe :
+                        <input class="bg-zinc-100 border border-black rounded-md w-full my-2" type="password" v-model="password" />
                         {{ errors.password }}
-                        <input label="Confirmer le mot de passe :" type="password" v-model="password_confirmation" />
+                        Confirmer le mot de passe :
+                        <input class="bg-zinc-100 border border-black rounded-md w-full my-2" type="password" v-model="password_confirmation" />
                         {{ errors.password_confirmation }}
-                        <div class="mb-2 mt-4">
-                            <button @click="register">S'inscrire</button>
+                        <div class="mb-2 mt-4 flex justify-center">
+                            <button class="bg-zinc-100 border border-zinc-200 rounded-md px-2" @click="register">S'inscrire</button>
                         </div>
                     </div>
                 </div>

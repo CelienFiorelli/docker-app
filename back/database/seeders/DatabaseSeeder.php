@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Image;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $urlBase = 'https://pokehelp.github.io/Image/HOME/normal/';
+        $images = [];
+        for ($i = 1; $i <= 151; $i++) {
+            $fill = str_repeat('0', 4 - strlen((string)$i));
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+            $images[] = [
+                'name' => $fill . $i . '.png',
+                'path' => $urlBase . $fill . $i . '.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+        Image::insert($images);
     }
 }
