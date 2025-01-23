@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  docker-app-database:
+    image: mysql:latest
+    container_name: docker-app-database
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: docker
+    volumes:
+      - "databases:/var/lib/mysql"
+    networks:
+      - docker-app-network
+
+  docker-app-web:
+    build:
+      context: ./front
+      dockerfile: Dockerfile-web
+    container_name: docker-app-web
+    restart: "unless-stopped"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./front:/app"
+    networks:
+      - docker-app-network
+
+  docker-app-api:
+    build:
+      context: ./back
+      dockerfile: Dockerfile-api
+    container_name: docker-app-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: docker-app-database
+      DB_DATABASE: docker
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    volumes:
+      - "./back:/app"
+    networks:
+      - docker-app-network
+
+networks:
+  docker-app-network:
+    driver: bridge
+
+volumes:
+  databases:

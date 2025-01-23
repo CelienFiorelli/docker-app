@@ -8,8 +8,8 @@
                     </div>
                     <div class="flex flex-col" @keypress.enter="login">
                         Nom d'utilisateur :
-                        <input class="bg-zinc-100 border border-black rounded-md w-full my-2" v-model="username" />
-                        {{ errors.username }}
+                        <input class="bg-zinc-100 border border-black rounded-md w-full my-2" v-model="name" />
+                        {{ errors.name }}
                         Email :
                         <input class="bg-zinc-100 border border-black rounded-md w-full my-2" type="email" v-model="email" />
                         {{ errors.email }}
@@ -44,7 +44,7 @@ export default {
     },
     data() {
         return {
-            username: '',
+            name: '',
             email: '',
             password: '',
             password_confirmation: '',
@@ -60,7 +60,7 @@ export default {
         register() {
             axios.post('/api/register', {
                 email: this.email,
-                username: this.username,
+                name: this.name,
                 password: this.password,
                 password_confirmation: this.password_confirmation
             }).then(res => {

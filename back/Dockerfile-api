@@ -1,0 +1,10 @@
+FROM bitnami/laravel:10.3.3
+
+WORKDIR /app
+
+
+RUN chown -R www-data:www-data /app
+
+COPY . .
+
+RUN composer install
